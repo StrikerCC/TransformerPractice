@@ -1,6 +1,7 @@
 import os
 import cv2
 import torch
+import torchvision.transforms
 from torch.utils.data import Dataset
 from torchvision.io import read_image
 
@@ -12,6 +13,7 @@ class KaggleCatsAndDogs5340Dataset(Dataset):
         self.labels = []
         self.classes = []
 
+        self.tf = torchvision.transforms.Resize(size=(300, 500))
         self.load_from_dir(dp)
         return
 
@@ -19,7 +21,8 @@ class KaggleCatsAndDogs5340Dataset(Dataset):
         return len(self.img_fps)
 
     def __getitem__(self, idx):
-        return read_image(self.img_fps[idx]).to(torch.float32), self.labels[idx]
+        img, label = read_image(self.img_fps[idx]).to(torch.float32), self.labels[idx]
+        return
 
     def load_from_dir(self, dp='./data/kagglecatsanddogs_5340/'):
         img_dps = os.path.join(dp, 'PetImages')
