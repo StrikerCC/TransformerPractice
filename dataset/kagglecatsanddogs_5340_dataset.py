@@ -21,7 +21,9 @@ class KaggleCatsAndDogs5340Dataset(Dataset):
         return len(self.img_fps)
 
     def __getitem__(self, idx):
-        img, label = read_image(self.img_fps[idx]).to(torch.float32), self.labels[idx]
+        img = read_image(self.img_fps[idx]).to(torch.float32)
+        label = torch.zeros()
+        label[self.labels[idx]] = 1
         return
 
     def load_from_dir(self, dp='./data/kagglecatsanddogs_5340/'):

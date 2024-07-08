@@ -31,7 +31,6 @@ def main():
     # gt = torch.Tensor()
     # gt.__deepcopy__(pred)
 
-
     print('pred', pred.shape)
     print('pred', pred)
 
